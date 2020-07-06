@@ -1,0 +1,112 @@
+/**
+ * @Project Traces - Mixins
+ * @author Camille Dion-Bolduc <camille.dion.bolduc@gmail.com>
+ * @date Octobre 2019 - Version 1.0.0
+
+ * ----------------------------
+ * TABLE DES MATIÈRES - MIXINS
+ * ----------------------------
+ * Styles de liens
+ * Styles de boutons
+ * Utilitaires de base (BoxSizing, Clearfix)
+ * Utilitaires pour accessibilité
+ * Utilitaires pour typographies
+ */
+
+// Styles de liens
+/** ----------- Liens <a> de base ----------- **/
+@mixin lienBase{
+  font-weight: 700; // Medium
+  text-decoration: none; }
+
+/** ----------- Liens <a> avec soulignement ----------- **/
+@mixin lienSoulignement{
+  font-weight: 700; // Medium
+  border-bottom: solid #AFAFAF 2px; }
+
+/** ----------- Bouton avec contour ----------- **/
+@mixin boutonContourBleu{
+  padding: 15px;
+  border: solid $bleuRibbon 5px;
+  mix-blend-mode: multiply; }
+
+@mixin boutonContourRose{
+  padding: 15px;
+  border: solid $radicalRed 5px;
+  mix-blend-mode: multiply; }
+
+/** ----------- Bouton avec fond ----------- **/
+@mixin boutonPleinRose {
+  padding: 15px;
+  background-color: $radicalRed;
+  mix-blend-mode: multiply; }
+
+/******** Utilitaires de base (BoxSizing, Clearfix) *********/
+/* BoxSizing */
+@mixin border-box-sizing{
+    * {
+        box-sizing: border-box;
+    }
+}
+
+/* Clearfix: pour contrer le problème des enfants flottants*/
+@mixin clearfix {
+    &:after {
+        content: " ";
+        display: table;
+        clear: both; }
+}
+
+.cf{
+    @include clearfix;
+}
+
+/******** Utilitaires pour accessibilité *********/
+// Hide only visually, but have it available for screenreaders:
+// http://snook.ca/archives/html_and_css/hiding-content-for-accessibility
+@mixin visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+
+    // Extends the .visuallyhidden class to allow the element to be focusable
+    // when navigated to via the keyboard: https://www.drupal.org/node/897638
+    &.focusable:active,
+    &.focusable:focus {
+        clip: auto;
+        height: auto;
+        margin: 0;
+        overflow: visible;
+        position: static;
+        white-space: normal;
+        width: auto; }
+}
+
+.visuallyhidden,
+.screen-reader-only{
+    @include visuallyhidden;
+}
+
+/******** Utilitaires pour typographie *********/
+// Fonction pour convertir une valeur de font-size en pixels à son équivalent rem
+@function calculateRem($size) {
+    $remSize: $size / 10px;
+    @return #{$remSize}rem;
+}
+// Mixin qui inclus la solution de repli en pixel suivi par la valeur calculée en rem
+@mixin fontSize($size) {
+    font-size: $size;
+    font-size: calculateRem($size);
+}
+
+/* Utilitaire de mise en page */
+@mixin hardReset{
+    margin:0;
+    padding:0;
+}

@@ -1,0 +1,43 @@
+/**
+ * @Project Traces - Styles généraux
+ * @author Griserie (Alexandrine C. Sevigny, Camille Dion-Bolduc & Emie Pelletier)
+ * @date Octobre 2019 - Version 1.0.0
+
+ * ------------------------------------
+ * TABLE DES MATIÈRES - Styles généraux
+ * ------------------------------------
+ * Liaison des SCSS
+ * Styles généraux
+ *
+ */
+
+/*** --------------------------------- Liaison des SCSS --------------------------------- ***/
+/*** Normalize ***/
+@import '../../../node_modules/normalize.scss/normalize.scss';
+@import "../../../node_modules/susy/sass/susy";
+@import "../../../node_modules/susy/sass/plugins/svg-grid";
+
+/**** Utilitaires ****/
+@import "utilitaires/mixins";
+@import "utilitaires/variables";
+
+/**** Grille ****/
+@import "grille/general";
+
+/*** Base ***/
+@import "base/general";
+@import "base/typo";
+
+/*** Modules ***/
+@import "modules/entete";
+@import "modules/pied_page";
+@import "modules/form";
+
+/* Mandats */
+@import "modules/mandatA";
+@import "modules/mandatB";
+@import "modules/mandatC";
+
+
+
+

@@ -1,0 +1,42 @@
+/**
+ * @Project Traces - General
+ * @author Camille Dion-Bolduc <camille.dion.bolduc@gmail.com>
+ * @date Octobre 2019 - Version 1.0.0
+
+ * ----------------------------
+ * TABLE DES MATIÈRES - General
+ * ----------------------------
+ * Gestion de Suzy et conteneur
+ **/
+
+@include border-box-sizing;
+
+/** ----------- Gestion de Suzy et conteneur ----------- **/
+@media(max-width:($mobile)){
+  $susy: (
+          'columns': susy-repeat(12),
+          'gutters': 0.25,
+          'spread': 'narrow',
+          'container-spread': 'narrow',
+  );
+  .conteneur {
+    //background: susy-svg-grid($susy) no-repeat scroll;
+  }
+}
+
+@media(min-width:$desktop){
+  $susy: (
+          'columns': susy-repeat(12),
+          'gutters': 0.25,
+          'spread': 'narrow',
+          'container-spread': 'narrow'
+  );
+  .conteneur {
+    //background: susy-svg-grid($susy) no-repeat scroll;
+  }
+}
+
+.conteneur {
+  margin: 0 auto;
+  max-width: 1000px;
+}

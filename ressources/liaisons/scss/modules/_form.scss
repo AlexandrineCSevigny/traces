@@ -1,0 +1,326 @@
+/**
+ * @Project Traces - Mandat A (Styles de formulaire généraux)
+ * @author Camille Dion-Bolduc <camille.dion.bolduc@gmail.com>
+ * @author Alexandrine C. Sevigny <asevigny@outlook.fr>
+ * @author Emie Pelletier <emiepelletier@hotmail.com>
+ * @date Novembre 2019 - Version 1.0.0
+
+ * -----------------------------
+ * TABLE DES MATIÈRES - STYLES FORMULAIRES
+ * -----------------------------
+ * Style de base
+ * Validation message (icone)
+ * Bouton radio
+ * Checkbox
+ * Section - Formulaire connexion
+ * Section - Formulaire facturation
+ * Affichage formulaire carte de crédits
+ *
+ */
+
+// Style de base
+.formulaire {
+  fieldset {
+    border: none;
+    padding: 0;
+  }
+
+  .select__conteneur {
+    display: inline-block;
+    position: relative;
+    margin: 0 30px 20px 0;
+  }
+
+  select {
+    display: block;
+    padding: 5px 10px;
+    font-weight: 200;
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    width: calc(100% + 25px);
+    cursor: pointer;
+    background: url("../../../public/liaisons/images/icones/icone_fleche_bas.svg") 92%/10px no-repeat $alto;
+  }
+
+  .messageInfo {
+    font-style: italic;
+    font-weight: 300;
+    margin: 5px 0 10px 0;
+  }
+
+
+  & label {
+    display: block;
+    @include fontSize(20px);
+    margin-bottom: 7px;
+    font-weight: 400;
+  }
+
+  & input {
+    height: 30px;
+    width: span(9 of 12);
+    background-color: white;
+    border: none;
+    padding: 0 0 0 10px;
+
+    &:focus {
+      outline: none;
+      border: solid #2C52FF 3px;
+    }
+  }
+
+  .input {
+    &--petit {
+      width: span(2 of 12);
+    }
+
+    &--moyen {
+      width: span(5 of 12);
+    }
+  }
+
+  &__validation {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-left: 15px;
+    padding-bottom: 2px;
+  }
+  .ctnForm {
+    margin: 15px 0;
+  }
+}
+
+// ------  Validation message (icone) ---------- //
+.validation__message {
+  display: block;
+}
+
+.validation__message--succes {
+  display: inline-block;
+}
+
+
+// ------  Bouton radio ---------- //
+.radioInput {
+  &:checked ~ label:before {
+    background-image: url("../../../public/liaisons/images/icones/icone_bouton_radio_checked.svg");
+  }
+}
+
+.radioLabel {
+  &:before {
+    content: "";
+    padding: 10px 15px;
+    margin-right: 15px;
+    line-height: 1.5;
+    text-align: center;
+    background-image: url("../../../public/liaisons/images/icones/icone_bouton_radio_unchecked.svg");
+    background-repeat: no-repeat;
+    background-position: 90% center;
+    transition: background-image ease-in-out 0.3s;
+  }
+}
+
+// ------  Checkbox ---------- //
+.checkbox {
+  margin: 15px 0;
+
+  &__libelle {
+    &:before {
+      content: "";
+      padding: 10px 10px 10px 15px;
+      margin-right: 15px;
+      line-height: 1.5;
+      text-align: center;
+      background-image: url(../../../public/liaisons/images/icones/icone_checkbox_unchecked.svg);
+      background-repeat: no-repeat;
+      background-position: 90% center;
+      transition: background-image ease-in-out 0.3s;
+    }
+  }
+
+  &__input:checked ~ &__libelle:before {
+    background-image: url(../../../public/liaisons/images/icones/icone_checkbox_checked.svg);
+  }
+}
+
+// ------  Section - Formulaire connexion ---------- //
+
+.formulaire {
+  background-color: #F3F3F3;
+  border: none;
+  padding: 25px;
+
+  &__bouton {
+    background-color: #F3F3F3;
+    padding: 25px 25px 25px 25px;
+    text-align: center;
+
+  }
+
+  &__mdp {
+
+    &Afficher {
+      input {
+        width: initial;
+        vertical-align: top;
+
+        &:checked ~ label:before {
+          background-image: url("../../../public/liaisons/images/icones/icone_checkbox_checked.svg");
+        }
+      }
+
+      label {
+        font-weight: 300;
+        display: inline;
+        font-size: 2rem;
+        letter-spacing: 1px;
+        vertical-align: middle;
+
+        &:before {
+          content: "";
+          padding: 10px 10px 10px 15px;
+          margin-right: 20px;
+          line-height: 1.5;
+          text-align: center;
+          background-image: url("../../../public/liaisons/images/icones/icone_checkbox_unchecked.svg");
+          background-repeat: no-repeat;
+          background-position: 90% center;
+          transition: background-image ease-in-out 0.3s;
+        }
+
+      }
+    }
+  }
+
+  &__oubliMdp {
+    background-color: #F3F3F3;
+    text-align: center;
+    padding: 15px 0 25px 0;
+    margin-bottom: 25px;
+    font-size: 2.3rem;
+
+    a {
+      font-weight: 300;
+    }
+
+    a &Icone {
+      margin-left: 10px;
+      width: 13px;
+      height: 13px;
+      vertical-align: middle;
+    }
+  }
+
+  &__pasCompte {
+    background-color: #F3F3F3;
+    text-align: center;
+    padding: 25px 0 25px 0;
+    margin: 25px 0 25px 0;
+    font-size: 2.3rem;
+
+    p {
+      font-weight: 200;
+    }
+
+    a {
+      font-weight: 500;
+      margin-top: 15px;
+    }
+
+    a &Icone {
+      margin-left: 10px;
+      width: 13px;
+      height: 13px;
+      vertical-align: middle;
+    }
+
+    .icone__aide {
+      display: inline-block;
+      background-image: url("../../../public/liaisons/images/autres/icone_aide.png");
+      width: 50px;
+      height: 45px;
+    }
+  }
+
+  &__sansCompte {
+    background-color: #F3F3F3;
+    text-align: center;
+    padding: 45px 0 45px 0;
+    margin-bottom: 35px;
+    margin-left: 0;
+    margin-right: 0;
+
+  }
+
+  .erreur__message {
+    font-weight: 300;
+  }
+}
+
+.bouton--plein {
+  border-radius: 5px;
+  background-color: #FF4769;
+  height: 45px;
+  width: span(10 of 12);
+  font-size: 2.5rem;
+  font-weight: 300;
+  transition: opacity 0.2s ease-in-out;
+  opacity: 0.9;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.bouton--vide {
+  font-size: 2rem;
+  font-weight: 300;
+  background-color: $blanc;
+  border: 3px solid $radicalRed;
+  border-radius: 5px;
+  padding: 15px 65px 15px 65px;
+  width: span(10 of 12);
+  transition: background-color 0.2s ease-in-out;
+
+  &:hover {
+    background-color: $radicalRed;
+    font-weight: 300;
+  }
+}
+
+.retroaction__creationDeCompte {
+  padding: 17px 15px 15px 15px;
+  background-color: lightgrey;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+
+// ------  Section - Formulaire facturation ---------- //
+.facturation {
+  &__modePaiement .radioLabel,
+  &__carteLibelle {
+    @include fontSize(16px);
+  }
+  &__icone {
+    vertical-align: middle;
+  }
+}
+
+// ---  Affichage formulaire carte de crédits --- //
+.js .facturation__informationsCredit {
+  visibility: hidden;
+  height: 0;
+
+  &.actif {
+    visibility: visible;
+    height: min-content;
+  }
+}
+
+
+

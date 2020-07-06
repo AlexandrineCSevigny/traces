@@ -1,0 +1,424 @@
+/**
+ * @Project Traces - Entête
+ * @author Alexandrine C. Sevigny <asevigny@outlook.fr>
+ * @date Octobre 2019 - Version 1.0.0
+ *
+ * ----------------------------
+ * TABLE DES MATIÈRES - ENTETE
+ * ----------------------------
+ * Style de l'entête
+ *** Section de recherche
+ *** Style Généraux du menu et listes
+ *** Section de logo
+ *** Style boutons du menu
+ *** Transactionnel
+ */
+
+//*****************************************************
+//Styles de l'entete
+//*****************************************************
+.header {
+  background-color: #FAFAFA;
+
+  // Section de recherche
+  .recherche {
+    background-color: $concrete;
+    padding: 20px 0;
+    @media (min-width: $mobile) {
+      width: span(12 of 12);
+      order: 2;
+      margin-bottom: 15px;
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 0 auto;
+      @media (min-width: $mobile) {
+        margin: 0 0 0 gutter(12);
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+      }
+
+      & .recherche__sujet {
+        width: 25%;
+        display: flex;
+        background-color: $alto;
+        background-image: url("../../../public/liaisons/images/icones/icone_fleche_bas.svg");
+        background-repeat: no-repeat;
+        background-position: 85% 50%;
+        @media (min-width: $mobile) {
+          width: 80px;
+        }
+
+        &Filtre {
+          padding: 5px 10px;
+          font-weight: 200;
+          border: none;
+          box-shadow: none;
+          background: transparent;
+          background-image: none;
+          -webkit-appearance: none;
+          width: 100%;
+          cursor: pointer;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+      & .recherche__rechercher {
+        position: relative;
+        width: 60%;
+        @media (min-width: $mobile) {
+          width: 275px;
+        }
+        &Input {
+          width: 100%;
+          height: 100%;
+          padding: 0 0 0 15px;
+          box-sizing: border-box;
+          border: solid 1px #E8E8E8;
+          outline: none;
+          &:focus,
+          &:active {
+            border: solid $bleuRibbon 3px;
+          }
+        }
+      }
+      & .recherche__button {
+        background-color: $radicalRed;
+        padding: 5px 10px;
+        border: none;
+        outline: none;
+        width: 15%;
+        @media (min-width: $mobile) {
+          width: auto;
+        }
+        &SVG {
+          width: 15px;
+          height: 15px;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    &__aideSaisie {
+      display: none;
+      position: absolute;
+      top: 32px;
+      left: 0;
+      width: 275px;
+      height: 300px;
+      background-color: $blanc;
+      border: solid 1px $concrete;
+      text-align: left;
+      overflow-y: scroll;
+      z-index: 1;
+
+      @media (min-width: $mobile) {
+        top: 35px;
+      }
+
+      &Lien {
+        display: inline-block;
+        padding: 10px 15px;
+        font-weight: 300;
+        width: 100%;
+      }
+
+      &Lien:hover {
+        background-color: $wildSand;
+        transition: background-color 0.2s ease-in;
+      }
+    }
+  }
+
+  // Style Généraux du menu et listes
+  .menu {
+    padding: 10px 0 0;
+    @include clearfix();
+    @media (min-width: $mobile) {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    &__logo {
+      width: span(10 of 12);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0 25px;
+      @media (min-width: $mobile) {
+        order: 0;
+        width: span(4 of 12);
+        margin: 0;
+        padding: 0;
+        & a {
+          text-align: left;
+        }
+      }
+
+      // Section de logo
+      & .logo {
+        width: span(6 of 8);
+        height: 100px;
+      }
+
+      .logo_panier_mobile {
+        @media (min-width: $mobile) {
+          display: none;
+        }
+
+        a {
+          display: flex;
+          align-items: center;
+          padding-right: 25px;
+
+          span {
+            font-size: 3rem;
+            font-weight: 100;
+
+            .nbItem {
+              font-size: 3rem;
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+
+    @media (min-width: $mobile) {
+      & .conteneurListe {
+        width: span(8 of 12);
+        order: 1;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+    @media (min-width: $desktop) {
+      & .conteneurListe {
+        width: span(7 of 12);
+      }
+    }
+
+    &__btnMenu {
+      border: none;
+      background-color: transparent;
+      padding: 0;
+
+      &:before {
+        content: '';
+        text-align: center;
+        width: 40px;
+        height: 25px;
+        display: block;
+        background-repeat: no-repeat;
+        background-image: url("../../../public/liaisons/images/icones/icone_menu_ouvert.svg");
+        background-size: cover;
+      }
+    }
+
+    &__libelle {
+      color: $blanc;
+      @include fontSize(18px);
+      font-weight: 800;
+    }
+
+    &__liste,
+    &__sousListe {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    &__liste {
+      margin: 0;
+
+      &.principale {
+        @media (min-width: $mobile) {
+          order: 1;
+          width: 100%;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .menu__lien {
+          font-weight: 700;
+          border-bottom: 3px solid #EDEDED;
+          @include fontSize(20px);
+          width: 100%;
+          padding: 20px 10px;
+          @media (min-width: $mobile) {
+            @include fontSize(16px);
+            font-weight: 500;
+            border-color: transparent;
+            padding: 10px 5px;
+            margin: 30px 0;
+          }
+        }
+      }
+
+      &.secondaire {
+        display: inline-block;
+        @media (min-width: $mobile) {
+          order: 0;
+          justify-content: space-between;
+          align-items: center;
+          width: span(5 of 7);
+          border-bottom: solid 3px #E4E4E4;
+          display: flex;
+        }
+        @media (max-width: 920px) {
+          width: span(7 of 7);
+        }
+
+        .menu__listeItem {
+          display: flex;
+          justify-content: center;
+          margin: 20px 0;
+
+          @media (min-width: $mobile) {
+            margin: 10px 0;
+            height: 25px;
+            display: flex;
+            align-items: flex-end;
+          }
+        }
+
+        // On retire le lien du panier dans le menu mobile, pour le garder à l'extérieur
+        .retirerMenuMobile {
+          display: none;
+
+          @media (min-width: $mobile) {
+            display: inline-block;
+          }
+        }
+
+        .menu__lien {
+          font-weight: 400;
+          @include fontSize(18px);
+          border-bottom: 3px solid transparent;
+          @media (min-width: $mobile) {
+            font-weight: 300;
+            line-height: 1.5;
+            @include fontSize(14px);
+            background-color: transparent;
+            & .nbItem {
+              font-weight: 700;
+            }
+          }
+          & .icone {
+            width: 20px;
+            height: 20px;
+            vertical-align: text-bottom;
+          }
+          & .nbItem {
+            color: $bleuRibbon;
+          }
+        }
+      }
+    }
+
+    &__listeItem {
+      position: relative;
+      @media (min-width: $mobile) {
+        position: initial;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        box-shadow: none;
+      }
+
+      & > .menu__lien {
+        color: $noir;
+        text-align: center;
+        padding: 0 10px;
+
+        @media (min-width: $mobile) {
+          border-bottom: none;
+          padding: 0 5px;
+        }
+      }
+    }
+
+    &__sousListe {
+      padding-left: 10px;
+    }
+
+    &__lien {
+      display: inline-block;
+      text-decoration: none;
+      padding: 10px;
+    }
+
+    .js & {
+      &--ferme {
+        .menu__liste {
+          display: none;
+        }
+      }
+
+      &__sousListe {
+        &--ferme {
+          display: none;
+        }
+      }
+    }
+
+    @media (min-width: $mobile) {
+      text-align: center;
+      &__sousListe {
+        display: none;
+        padding: 0;
+        background-color: yellow;
+
+        &Item {
+          display: inline-block;
+        }
+      }
+      &__liste {
+        &Item {
+          display: inline-block;
+        }
+      }
+      .js & {
+        &__btnMenu {
+          display: none;
+        }
+        &--ferme {
+          .menu__liste {
+            display: flex;
+          }
+        }
+      }
+    }
+  }
+}
+
+//**********************************************
+// Style boutons du menu
+//**********************************************
+
+.menu--ferme .menu__btnMenu:before {
+  background-image: url("../../../public/liaisons/images/icones/icone_menu_ferme.svg");
+  background-size: cover;
+  text-align: center;
+  width: 40px;
+  height: 25px;
+}
+
+//**********************************************
+// Transactionnel
+//**********************************************
+.etapes {
+  @include fontSize(22px);
+  font-weight: 200;
+  & .etape--actif {
+    font-weight: bold;
+    border-bottom: $bleuRibbon 3px solid;
+  }
+}

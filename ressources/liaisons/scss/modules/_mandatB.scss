@@ -1,0 +1,895 @@
+/**
+ * @Project Traces - Mandat B
+ * @author Emie Pelletier <emiepelletier@hotmail.com>
+ * @date Octobre 2019 - Version 1.0.0
+
+ * -----------------------------
+ * TABLE DES MATIÈRES - MANDAT B
+ * -----------------------------
+ *
+ * Catégories
+ * Catalogue
+ * Preferences (tris + mode d'affichage)
+ *** Tris
+ *** Quantité
+ *** Mode d'affichage
+ *** Icones mode d'affichage
+ * Carte grille par défaut
+ *** Coup de coeur
+ *** Animation hover
+ * Carte liste
+ *** Coup de coeur
+ *** Animation hover
+ * Pagination catalogue
+ * Liste déroulante catalogue
+ */
+
+
+//-----------------------------------------  Catégories ---------------------------------------------
+
+.categories {
+  width: 235px;
+  margin: 0 gutter(12) 0 0;
+  padding: 150px 15px 20px;
+  background-color: $wildSand;
+}
+
+.categories--mobile {
+  @media (min-width: $desktop) {
+    display: none;
+  }
+}
+
+.categories--table {
+  display: none;
+
+  @media (min-width: $desktop) {
+    display: block;
+  }
+}
+
+.categories__item {
+  margin: 20px 0 0 0;
+
+  &Categorie {
+    font-weight: 200;
+  }
+
+  &Categorie--enCours {
+    @include fontSize(16px);
+    font-weight: 400;
+  }
+}
+
+//-----------------------------------------  Catalogue ---------------------------------------------
+
+.catalogue {
+  max-width: 1000px;
+
+  @media (min-width: $desktop) {
+    display: flex;
+  }
+
+  &__contenu {
+    padding: 0 10px;
+
+    @media (min-width: $desktop) {
+      flex-shrink: 1;
+      flex-grow: 1;
+      width: span(9 of 12);
+      padding: 0;
+    }
+  }
+
+  &__titre {
+    margin: 10px 0;
+
+    @media (min-width: $mobile) {
+      margin: 20px 0;
+    }
+  }
+
+  &__bouton {
+    @include boutonContourRose;
+    vertical-align: top;
+    padding: 8px;
+    margin: 0 15px 0 5px;
+    background-color: transparent;
+
+    &:hover{
+      background-color: $radicalRed;
+      opacity: 0.9;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    @media (min-width: $mobile) {
+      margin: 0 15px 0 5px;
+    }
+  }
+
+  //------------------------------------  Preferences (tris + mode d'affichage) --------------------------------------
+
+  .catalogue__preferences {
+    @media (min-width: $desktop) {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin: 30px 0 20px;
+    }
+
+    &Listes {
+      display: block;
+
+      @media (min-width: $mobile) and (max-width: $desktop) {
+        display: flex;
+      }
+
+      @media (min-width: $desktop) {
+        display: block;
+      }
+    }
+
+    &Resultat {
+      order: -1;
+      margin: 25px 0 0 0;
+      font-weight: 200;
+    }
+  }
+
+  //--------------  Tris ------------------
+
+  .catalogue__preferencesTris {
+    display: block;
+    margin: 15px 0 0 0;
+
+    @media (min-width: 630px) and (max-width: $desktop) {
+      margin: 15px 20px 0 0;
+    }
+
+    @media (min-width: $desktop) {
+      display: inline-block;
+      margin: 0 15px;
+    }
+  }
+
+  //--------------  Quantité -------------
+
+  .catalogue__preferencesQuantite {
+    display: inline-block;
+    margin: 15px 0 0 0;
+
+    @media (min-width: $mobile) and (max-width: $desktop) {
+      margin: 15px 20px 0 0;
+    }
+  }
+
+  //---------------  Mode d'affichage --------------
+
+  .catalogue__preferencesAffichage {
+    display: inline-block;
+    margin: 15px 0 0 0;
+    position: relative;
+    width: 110px;
+    height: 50px;
+    vertical-align: top;
+    background-color: $concrete;
+
+    @media (min-width: $mobile) {
+     margin: 15px 0 0 20px;
+    }
+  }
+
+  .catalogue__affichageBouton {
+    background: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 0;
+
+    &.cartes--grille .icone-grille {
+      background: url("../../liaisons/images/icones/icone_catalogue_grille_bleu.svg") no-repeat center;
+      transition: background 0.3s ease-in;
+    }
+
+    &.cartes--liste .icone-liste {
+      background: url("../../liaisons/images/icones/icone_catalogue_liste_bleu.svg") no-repeat center;
+      transition: background 0.3s ease-in;
+    }
+  }
+
+  //-----------------  Icones mode d'affichage  ----------------
+
+  .icone-grille {
+    background: url("../../liaisons/images/icones/icone_catalogue_grille.svg") no-repeat center;
+
+    &:hover {
+      background: url("../../liaisons/images/icones/icone_catalogue_grille_bleu.svg") no-repeat center;
+      transition: background 0.3s ease-in;
+    }
+  }
+
+  .icone-liste {
+    background: url("../../liaisons/images/icones/icone_catalogue_liste.svg") no-repeat center;
+
+    &:hover {
+      background: url("../../liaisons/images/icones/icone_catalogue_liste_bleu.svg") no-repeat center;
+      transition: background 0.2s ease-in;
+    }
+  }
+
+  //-------------------------------------  Carte grille (par défaut) -----------------------------------------------
+
+  .cartes .cartes--grille {
+    text-align: center;
+
+    @media(min-width: $mobile) {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
+
+    & article {
+      @media (max-width: $mobile) {
+        &:nth-child(4n+1),
+        &:nth-child(4n) {
+          background-color: $concrete;
+        }
+
+        &:nth-child(4n+2),
+        &:nth-child(4n+3) {
+          background-color: lighten($wildSand, 1%);
+        }
+      }
+
+      @media (min-width: $mobile) and (max-width: $desktop) {
+        &:nth-child(6n+1),
+        &:nth-child(6n+3),
+        &:nth-child(6n+5),
+        &:nth-child(6n) {
+          background-color: $concrete;
+        }
+
+        &:nth-child(6n+2),
+        &:nth-child(6n+4),
+        &:nth-child(6n+6) {
+          background-color: lighten($wildSand, 1%);
+        }
+      }
+
+      @media (min-width: $desktop) {
+        &:nth-child(8n+1),
+        &:nth-child(8n+3),
+        &:nth-child(8n+6),
+        &:nth-child(8n) {
+          background-color: $concrete;
+        }
+
+        &:nth-child(8n+2),
+        &:nth-child(8n+4),
+        &:nth-child(8n+5),
+        &:nth-child(8n+7) {
+          background-color: lighten($wildSand, 1%);
+        }
+      }
+    }
+
+    & .carte {
+      display: inline-block;
+      width: 185px;
+      height: 310px;
+      padding: 20px 15px;
+      margin: 15px 10px 0 0;
+      vertical-align: middle;
+      text-align: left;
+      transform: perspective(1px) translateZ(0);
+      overflow: hidden;
+      outline: none;
+
+      @media (min-width: $mobile) {
+        width: 175px;
+        height: 310px;
+        padding: 20px 10px;
+        margin: 10px 0 15px 0;
+      }
+
+      @media(min-width: $desktop) {
+        width: 175px;
+        margin: 0 0 15px 0;
+      }
+
+      &__image {
+        max-width: 85px;
+        height: 115px;
+
+        &--bg {
+          position: relative;
+          margin: 0 auto;
+          width: 85px;
+          height: 120px;
+          background-color: $wildSand;
+        }
+      }
+
+      &__parution {
+        display: inline-block;
+        line-height: initial;
+        transform: rotate(-90deg);
+        transform-origin: left;
+        position: absolute;
+        color: $blanc;
+        font-weight: 200;
+        letter-spacing: 0.8px;
+        mix-blend-mode: multiply;
+        background: transparentize($bleuRibbon, 0.1);
+        bottom: 20px;
+        left: -6px;
+      }
+
+      &__titre {
+        margin: 10px 0 0 0;
+        line-height: 18px;
+        @include fontSize(16px);
+        letter-spacing: 1.1px;
+        font-weight: 400;
+
+        @media(min-width: $mobile) {
+          margin: 10px 0 0 0;
+          line-height: initial;
+        }
+      }
+
+      &__auteur {
+        @include fontSize(15px);
+        font-weight: 200;
+        margin: 8px 0 0 0;
+        padding: 0 0 0 20px;
+
+        @media(min-width: $mobile) {
+          margin: 8px 0 0 0;
+          padding: 0 0 0 20px;
+          line-height: 17px;
+        }
+      }
+
+      &__footer {
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        bottom: 20px;
+        width: 155px;
+
+        @media(min-width: $mobile) {
+          bottom: 20px;
+          width: 150px;
+        }
+
+        &Evaluation {
+          font-weight: 200;
+          line-height: 16px;
+        }
+
+        &--icone {
+          margin: 0 0 0 5px;
+          width: 20px;
+          height: 20px;
+          vertical-align: bottom;
+        }
+
+        &Prix {
+          font-weight: 400;
+        }
+      }
+    }
+
+    //--------------------  Coup de coeur  --------------------------
+    .carte--coupDeCoeur {
+      height: 310px;
+      width: 310px;
+
+      @media (min-width: $mobile) {
+        height: 310px;
+        width: 365px;
+      }
+
+      @media (min-width: $desktop) {
+        height: 310px;
+        width: 360px;
+      }
+
+      & .carte__titre--coupDeCoeur {
+        font-family: "Frank Ruhl Libre", "Georgia", serif;
+        width: 120px;
+        margin: 15px 0 0 55px;
+        @include fontSize(25px);
+        line-height: 2.5rem;
+        letter-spacing: 1.1px;
+
+        @media (min-width: $mobile) {
+          width: 160px;
+          margin: 40px 0 0 70px;
+        }
+      }
+
+      & .carte__titre--coupDeCoeur:before {
+        content: "";
+        display: inline-block;
+        width: 60px;
+        height: 70px;
+        background: url(../../liaisons/images/autres/illustration_coup_de_coeur.svg) no-repeat center;
+        background-size: contain;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: -99;
+
+        @media (min-width: $mobile) {
+          width: 80px;
+          height: 100px;;
+        }
+      }
+
+      & .carte__image--bg {
+        display: inline-block;
+        position: absolute;
+        bottom: 60px;
+        left: 30px;
+
+        @media (min-width: $mobile) {
+          bottom: 40px;
+          left: 30px;
+        }
+      }
+
+      & .carte__titre {
+        display: inline-block;
+        position: absolute;
+        top: 128px;
+        left: 120px;
+        right: 20px;
+        margin: 0;
+
+        @media (min-width: $mobile) {
+          top: 145px;
+          left: 120px;
+        }
+      }
+
+      & .carte__auteur {
+        display: inline-block;
+        position: absolute;
+        top: 180px;
+        left: 120px;
+
+        @media (min-width: $mobile) {
+          top: 200px;
+          left: 130px;
+        }
+      }
+
+      & .carte__footer {
+        width: 110px;
+        bottom: 60px;
+        left: 120px;
+
+        @media (min-width: $mobile) {
+          width: 150px;
+          bottom: 40px;
+          left: 130px;
+        }
+      }
+    }
+
+    //------------------------  Animation hover ------------------------
+
+    .carte:before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      left: 0;
+      right: 100%;
+      bottom: 0;
+      background: $radicalRed;
+      height: 5px;
+      transition: right 0.4s ease-out;
+    }
+
+    .carte:hover:before, .carte:focus:before, .carte:active:before {
+      right: 0;
+    }
+  }
+
+  //------------------------------------------  Carte liste ---------------------------------------------------------
+
+  .cartes .cartes--liste {
+    display: flex;
+    flex-flow: column nowrap;
+
+    & article {
+      margin: 5px 10px;
+
+      @media(min-width: $desktop) {
+        margin: 15px 0 0 0;
+      }
+
+      &:nth-child(even) {
+        background-color: $concrete;
+      }
+
+      &:nth-child(odd) {
+        background-color: lighten($wildSand, 1%);
+      }
+    }
+
+    & .carte a {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 150px;
+      padding: 20px 15px;
+      transform: perspective(1px) translateZ(0);
+      overflow: hidden;
+      outline: none;
+      position: relative;
+
+      @media(min-width: $mobile) {
+        height: 125px;
+      }
+
+      @media(min-width: $desktop) {
+        height: 100px;
+        width: 740px;
+        padding: 10px 35px;
+      }
+    }
+
+    & .carte {
+      &__image {
+        display: block;
+        max-width: 65px;
+        height: 95px;
+        margin: 0 auto;
+
+        @media(min-width: $desktop) {
+          height: 80px;
+          width: 55px;
+        }
+
+        &--bg {
+          position: relative;
+          width: 65px;
+          height: 85px;
+          margin: 0 0 0 10px;
+          background-color: $concrete;
+
+          @media(min-width: $desktop) {
+            height: auto;
+            margin: 0;
+            padding: 0;
+          }
+        }
+      }
+
+      &__parution {
+        display: inline-block;
+        line-height: initial;
+        transform: rotate(-90deg);
+        transform-origin: left;
+        position: absolute;
+        color: $blanc;
+        font-weight: 200;
+        letter-spacing: 0.8px;
+        mix-blend-mode: multiply;
+        background: transparentize($bleuRibbon, 0.1);
+        bottom: 5px;
+        left: -5px;
+
+        @media(min-width: $mobile) {
+          bottom: 5px;
+          left: -4px;
+        }
+
+        @media(min-width: $desktop) {
+          bottom: 0;
+          left: 0;
+        }
+      }
+
+      &__titre {
+        margin: 5px 0 70px 15px;
+        line-height: 1.7rem;
+        @include fontSize(16px);
+        letter-spacing: 1.1px;
+        font-weight: 400;
+
+        @media(min-width: $desktop) {
+          width: 450px;
+          margin: 0 0 30px 20px;
+          line-height: 2rem;
+        }
+      }
+
+      &__auteur {
+        position: absolute;
+        left: 110px;
+        bottom: 50px;
+        @include fontSize(15px);
+        font-weight: 200;
+
+        @media(min-width: $desktop) {
+          left: 140px;
+          bottom: 20px;
+        }
+      }
+
+      &__footer {
+        bottom: 15px;
+        right: 20px;
+        width: 135px;
+        position: absolute;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        @media (min-width: $mobile) and (max-width: $desktop) {
+          bottom: 40px;
+          right: 35px;
+        }
+
+        @media(min-width: $desktop) {
+          bottom: auto;
+          right: 35px;
+        }
+
+        &Evaluation {
+          font-weight: 200;
+          line-height: 16px;
+        }
+
+        &--icone {
+          margin: 0 0 0 5px;
+          width: 20px;
+          height: 20px;
+          vertical-align: bottom;
+        }
+
+        &Prix {
+          font-weight: 400;
+        }
+      }
+    }
+
+    //------------------  Coup de coeur  ----------------------
+
+    & .carte--coupDeCoeur a {
+      height: 200px;
+
+      @media (min-width: $mobile) {
+        height: 185px;
+      }
+
+      @media(min-width: $desktop) {
+        height: 150px;
+      }
+    }
+
+    .carte--coupDeCoeur {
+      & .carte__titre--coupDeCoeur {
+        margin: 0 0 140px 18px;
+        font-family: "Frank Ruhl Libre", "Georgia", serif;
+        @include fontSize(20px);
+        letter-spacing: 1.1px;
+        line-height: 2.5rem;
+
+        @media(min-width: $mobile){
+          margin: 0 0 120px 30px;
+        }
+
+        @media (min-width: $desktop) {
+          width: 140px;
+          margin: 45px 0 0 30px;
+        }
+      }
+
+      & .carte__titre--coupDeCoeur:before {
+        content: "";
+        display: inline-block;
+        width: 35px;
+        height: 35px;
+        background: url(../../liaisons/images/autres/illustration_coup_de_coeur.svg) no-repeat center;
+        background-size: contain;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: -99;
+
+        @media(min-width: $mobile){
+          width: 45px;
+          height: 45px;
+        }
+
+        @media(min-width: $desktop) {
+          width: 60px;
+          height: 60px;
+          top: 65px;
+          left: 20px;
+        }
+      }
+
+      & .carte__image--bg {
+        position: absolute;
+        top: 70px;
+        left: 15px;
+
+        @media(min-width: $mobile) {
+          top: 70px;
+        }
+
+        @media(min-width: $desktop) {
+          top: 40px;
+          left: 200px;
+        }
+      }
+
+      & .carte__titre {
+        position: absolute;
+        top: 60px;
+        left: 85px;
+
+        @media(min-width: $mobile) {
+          top: 60px;
+        }
+
+        @media(min-width: $desktop) {
+          top: 40px;
+          left: 260px;
+          width: 300px;
+        }
+      }
+
+      & .carte__auteur {
+        position: absolute;
+        left: 120px;
+        bottom: 50px;
+
+        @media(min-width: $mobile) {
+          bottom: 65px
+        }
+
+        @media(min-width: $desktop) {
+          left: 300px;
+          bottom: 50px;
+        }
+      }
+
+      & .carte__footer {
+        bottom: 15px;
+        right: 20px;
+
+        @media (min-width: $mobile) {
+          bottom: 40px;
+          right: 30px;
+        }
+      }
+    }
+
+    //----------- Animation hover ------------
+    .carte {
+      position: relative;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 5px;
+        background-color: #fc2f70;
+        transform: scaleY(0);
+        transition: transform 0.5s ease;
+        transform-origin: 0 bottom;
+      }
+
+      &:hover:before, &:focus:before {
+        transform-origin: 0 top;
+        transform: scaleY(1);
+      }
+    }
+  }
+
+  //-------------------------------------------  Pagination catalogue  -----------------------------------------------
+
+  .pagination {
+    text-align: center;
+    margin: 20px 0;
+
+    @media (min-width: $mobile) {
+      margin: 40px 0;
+    }
+
+    &__lien {
+      display: inline-block;
+      font-weight: 200;
+      margin: 0 7px;
+
+      @media (min-width: $mobile) {
+        margin: 0 5px;
+      }
+
+      &--actif {
+        background: url("../../liaisons/images/icones/icone_pagination_active.svg") no-repeat;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        padding: 5px 3px;
+        font-weight: 400;
+      }
+    }
+  }
+}
+
+//------------------------------------------  Liste déroulante catalogue -------------------------------------------
+
+.catalogue__listeConteneur {
+  display: inline-block;
+  position: relative;
+  background-color: $concrete;
+
+  &--petit {
+    width: 120px;
+  }
+
+  &--moyen {
+    width: 180px;
+  }
+
+  &--grand {
+    width: 170px;
+
+    @media(min-width: 400px){
+      width: 220px;
+    }
+  }
+}
+
+.catalogue__listeLibelle {
+  position: absolute;
+  top: 3px;
+  padding: 0 8px;
+  letter-spacing: 1.10px;
+  @include fontSize(12px);
+  font-weight: 300;
+
+  @media (min-width: $mobile) {
+    top: 6px;
+    left: 3px;
+  }
+}
+
+.catalogue__listeOption {
+  appearance: none;
+  width: 100%;
+  height: 50px;
+  padding: 8px 0 0 12px;
+  outline: none;
+  border: 0;
+  cursor: pointer;
+  font-size: 16px;
+  background: url("../../../public/liaisons/images/icones/icone_fleche_bas.svg") 92%/10px no-repeat $concrete;
+
+  &:focus {
+    outline: 3px solid $bleuRibbon;
+  }
+}
+
+// ------ JS --------
+
+.js {
+
+  & .catalogue__preferencesQuantite {
+    margin: 15px -7px 0 0;
+  }
+}
+

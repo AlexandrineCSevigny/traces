@@ -1,0 +1,195 @@
+/**
+ * @Project Traces - Pied de page
+ * @author Alexandrine C. Sevigny <asevigny@outlook.fr>
+ * @date Octobre 2019 - Version 1.0.0
+
+ * ----------------------------
+ * TABLE DES MATIÈRES - PIED DE PAGE
+ * ----------------------------
+ * Styles du pied de page
+ * Médias sociaux
+ *
+ */
+
+//*****************************************************
+//Styles du pied de page
+//*****************************************************
+
+.footer {
+  & .gris {
+    background-color: $concrete;
+  }
+  & .blanc {
+    background-color: $blanc;
+  }
+  &__principal {
+    padding: 0 15px;
+    @media (min-width: $mobile) {
+      display: flex;
+      justify-content: space-between;
+      padding: 30px 0;
+
+      & .menu__logo {
+        width: span(3 of 12);
+        display: flex;
+        align-items: center;
+      }
+      & .carte {
+        width: span(6 of 12);
+        display: flex;
+      }
+      & .media {
+        width: span(3 of 12);
+      }
+    }
+
+    & .menu__logoLien {
+      display: flex;
+      justify-content: center;
+      padding: 40px 0;
+      @media (min-width: $mobile) {
+        justify-content: flex-start;
+      }
+    }
+    & .menu__logoSVG {
+      width: span(4 of 12);
+      height: 50px;
+      @media (min-width: $mobile) {
+        width: span(2 of 3);
+        height: 150px;
+      }
+    }
+
+    & .carte__titre {
+      width: span(4 of 12);
+      margin-bottom: 0;
+      margin-top: 0;
+      @media (min-width: $mobile) {
+        width: span(1.15 of 6);
+        margin-top: 22px;
+      }
+    }
+    & .carte__image {
+      @media (min-width: $mobile) {
+       width: span(3.85 of 6);
+      }
+      &SVG{
+        background-image: url("../../../public/liaisons/images/autres/trouver_un_magasin.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        display: block;
+        height: 300px;
+      }
+    }
+    & .mediaSociaux {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      &__titre {
+        width: 100%;
+      }
+
+      &__facebook,
+      &__twitter,
+      &__instagram {
+        display: block;
+        margin-right: 20px;
+        @media (min-width: $mobile) and (max-width: 800px) {
+          margin-right: 5px;
+        }
+        & .icone {
+          width: 60px;
+          height: 60px;
+          @media (min-width: $mobile) {
+            width: 40px;
+            height: 40px;
+          }
+        }
+      }
+    }
+
+    & .contact {
+      padding-bottom: 50px;
+
+      &__titre {
+        margin: 20px 0 10px;
+      }
+      &__icone {
+        vertical-align: bottom;
+      }
+      &__texte {
+        font-weight: lighter;
+      }
+    }
+  }
+
+  &__secondaire {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 0;
+
+    & .securite,
+    & .copyright {
+      width: span(10 of 12);
+      text-align: center;
+    }
+    & .securite {
+      font-weight: 700;
+      line-height: 1.45;
+      &__icone {
+        width: 13px;
+        height: 13px;
+      }
+    }
+    & .copyright {
+      line-height: 1.5;
+      @media (min-width: $mobile) {
+        & p {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+}
+
+// Médias sociaux
+.facebook {
+  background-image: url("../../../public/liaisons/images/autres/icone_rs_facebook_x2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.85;
+  transition: opacity ease-in-out 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.twitter {
+  background-image: url("../../../public/liaisons/images/autres/icone_rs_twitter_x2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.85;
+  transition: opacity ease-in-out 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.instagram {
+  background-image: url("../../../public/liaisons/images/autres/icone_rs_instagram_x2.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.85;
+  transition: opacity ease-in-out 0.3s;
+  &:hover {
+    opacity: 1;
+  }
+}

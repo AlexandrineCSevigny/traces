@@ -1,0 +1,1269 @@
+/**
+ * @Project Traces - Mandat C
+ * @author Alexandrine C. Sevigny <asevigny@outlook.fr>
+ * @date Octobre 2019 - Version 1.0.0
+ *
+ * -----------------------------
+ * TABLE DES MATIÈRES - MANDAT C
+ * -----------------------------
+ * Fil d'Ariane
+ * Fiche
+ *** Affichage de l'état de parution du livre
+ *** Section de l'image du livre
+ *** Section du titre du livre
+ *** Section des formats et quantité du livre
+ *** Onglets
+ *** Informations de publication
+ *** Prix et mention
+ *** Évaluation
+ *** Boîte modale
+ * Panier
+ *** Style de l'entete du panier
+ *** Section des Items du panier
+ *** Section d'un item
+ *** Section des prix du panier
+ *** Contrainte js
+ */
+
+/*******************************
+ * Fil d'Ariane
+ ******************************/
+.fiche .filAriane__lien:first-child {
+  display: none;
+  @media (min-width: $mobile) {
+    display: inline;
+  }
+}
+
+/*--------------------------------------------------------------------------------------
+* Fiche
+*--------------------------------------------------------------------------------------*/
+
+/******************************
+* Affichage de l'état de parution du livre
+******************************/
+.fiche .etat {
+  &--mobile {
+    display: block;
+    text-align: right;
+    margin-right: span(1 of 12)+gutter(12);
+    @media (min-width: $mobile) {
+      display: none;
+    }
+
+    span {
+      font-weight: 300;
+    }
+
+    &:before {
+      content: "";
+      display: inline-block;
+      width: 30px;
+      height: 5px;
+      background-color: $bleuRibbon;
+      vertical-align: middle;
+    }
+  }
+
+  &--bureau {
+    display: none;
+    @media (min-width: $mobile) {
+      display: block;
+      text-align: right;
+      line-height: 1.5;
+      &:before {
+        content: "";
+        display: inline-block;
+        width: 30px;
+        height: 5px;
+        background-color: $bleuRibbon;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+/******************************
+* Section de l'image du livre
+******************************/
+.fiche {
+  .livre__image {
+    position: relative;
+    width: span(10 of 12);
+    margin: 0 auto;
+    @media (min-width: $mobile) {
+      width: span(4 of 12);
+      margin-left: span(1 of 12)+gutter(12);
+    }
+
+    &Lien {
+      position: absolute;
+      top: 50px;
+      left: -20px;
+      background-color: transparent;
+      @media (min-width: $mobile) {
+        left: -25px;
+      }
+
+      &SVG {
+        width: 50px;
+        height: 40px;
+      }
+    }
+
+    &Img {
+      width: 100%;
+      height: auto;
+      @media (min-width: $mobile) {
+        max-height: 530px;
+      }
+    }
+  }
+}
+
+
+@media (min-width: $mobile) {
+  .fiche .livre {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+/*
+* Section du titre du livre
+*/
+.fiche {
+  .livre__info {
+    @media (min-width: $mobile) {
+      width: span(6 of 12);
+    }
+
+    &Titre,
+    &SousTitre {
+      margin: 0;
+    }
+
+    &Titre {
+      @include fontSize(45px);
+      margin-top: 30px;
+      @media (min-width: $mobile) {
+        margin-top: 0;
+      }
+    }
+
+    &SousTitre {
+      font-weight: 300;
+      font-family: "Fira Sans Condensed", "Helvetica Neue", sans-serif;
+    }
+
+    & .auteur {
+      text-align: right;
+      font-weight: 200;
+      @media (min-width: $mobile) {
+        margin: 15px 0;
+      }
+
+      &Nom {
+        display: inline-block;
+        font-weight: 600;
+      }
+
+      & .icone {
+        width: 15px;
+        height: 15px;
+        align-self: center;
+        margin-left: 5px;
+        vertical-align: baseline;
+      }
+    }
+  }
+}
+
+/******************************
+* Section des formats et quantité du livre
+******************************/
+.fiche, .confirmation {
+  .panier {
+    margin: 65px 0 75px;
+    @media (min-width: $mobile) {
+      margin: 65px 0 0;
+    }
+
+    &__format {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    &__formatItem {
+      width: span(8 of 12);
+      background-color: $concrete;
+      margin: 0 auto 5px;
+      @media (min-width: $mobile) {
+        width: span(3 of 6);
+        margin: 0;
+      }
+
+      &Label {
+        display: block;
+        padding: 15px;
+        line-height: 1.5;
+        font-weight: 200;
+        text-align: center;
+        cursor: pointer;
+        @media (min-width: $mobile) {
+          padding: 15px 5px;
+        }
+
+        & .prix {
+          font-weight: 600;
+        }
+
+        &:after {
+          content: "";
+          padding: 15px;
+          margin-left: 10px;
+          line-height: 1.5;
+          text-align: center;
+          background-image: url("../../../public/liaisons/images/icones/icone_bouton_radio_unchecked.svg");
+          background-repeat: no-repeat;
+          background-position: 90% center;
+          transition: background-image ease-in-out 0.3s;
+          @media (min-width: $mobile) and (max-width: 800px) {
+            margin-left: 5px;
+            display: block;
+            background-position: center center;
+          }
+        }
+      }
+
+      &Radio:checked ~ .panier__formatItemLabel:after {
+        background-image: url("../../../public/liaisons/images/icones/icone_bouton_radio_checked.svg");
+      }
+    }
+
+    &__div {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      margin-top: 50px;
+      border: solid 5px $radicalRed;
+      mix-blend-mode: multiply;
+      @media (min-width: $mobile) {
+        margin-top: 30px;
+        border: none;
+        display: flex;
+        flex-direction: row-reverse;
+        position: relative;
+      }
+    }
+
+    &__quantite {
+      width: span(3 of 12);
+      display: flex;
+      background-color: $concrete;
+      background-image: url("../../../public/liaisons/images/icones/icone_fleche_haut_bas.svg");
+      background-repeat: no-repeat;
+      background-position: 85% 50%;
+      padding: 10px 0;
+      @media (min-width: $mobile) {
+        margin-right: span(1 of 6)+gutter(6);
+        width: span(1 of 6);
+        height: 60px;
+      }
+
+      &Select {
+        padding: 5px 15px;
+        font-weight: 200;
+        border: none;
+        box-shadow: none;
+        background: transparent;
+        background-image: none;
+        -webkit-appearance: none;
+        width: 100%;
+        cursor: pointer;
+        @media (min-width: $mobile) and (max-width: 800px) {
+          padding: 5px 10px;
+        }
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+
+    &__bouton {
+      width: 100%;
+      @media (min-width: $mobile) {
+        width: span(6 of 6);
+        position: absolute;
+        right: span(2 of 6)+gutter(6);
+      }
+
+      &Btn {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 0;
+        @media (min-width: $mobile) {
+          @include boutonContourRose;
+          padding: 10px;
+        }
+
+        & .icone {
+          width: 20px;
+          height: 20px;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+}
+
+/*******************************
+ * Onglets
+ * Source initiale avant modification : https://codepen.io/mikestreety/pen/yVNNNm
+ ******************************/
+.fiche .onglets {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 100px 0;
+  @media (min-width: $mobile) {
+    margin: 100px auto;
+    background-color: $concrete;
+  }
+
+  &__label {
+    order: 1; // Put the labels first
+    display: block;
+    padding: 20px 10px;
+    margin-right: 0.2rem;
+    margin-top: 0;
+    @include fontSize(18px);
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: $concrete;
+    border-bottom: solid 3px #D8D8D8;
+    @media (min-width: $mobile) {
+      display: flex;
+      flex-grow: 1;
+      justify-content: center;
+      margin: 0;
+      text-align: center;
+    }
+  }
+
+  &__input {
+    display: none;
+
+    &:checked + label {
+      border-bottom: solid 3px $bleuRibbon;
+
+      & + .onglet {
+        height: auto;
+        display: block;
+        border-bottom: solid 3px $bleuRibbon;
+        @media (min-width: $mobile) {
+          border: none;
+        }
+      }
+    }
+  }
+
+  & .onglet {
+    order: 99;
+    flex-grow: 1;
+    width: 100%;
+    display: none;
+    padding: 10px 20px 50px;
+    background: $concrete;
+
+    & .h2 {
+      margin: 20px 0;
+      @media (min-width: $mobile) {
+        margin-left: span(1 of 12)+gutter(12);
+      }
+    }
+
+    & .contenu {
+      width: span(11 of 12);
+      margin-left: span(1 of 12)+gutter(12);
+      @media (min-width: $mobile) {
+        margin-left: span(2 of 12)+gutter(12);
+        width: span(8 of 12);
+      }
+    }
+
+    & .information__liste {
+      width: span(10 of 12)+gutter(6);
+      margin-left: span(2 of 12);
+      @media (min-width: $mobile) {
+        width: span(8 of 12);
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+        &Item {
+          width: span(4 of 8);
+          padding: 25px 10px;
+          margin: 0;
+          border-bottom: #D9D9D9 solid 3px;
+
+          &:nth-child(2n) {
+            border-left: #D9D9D9 solid 3px;
+            text-align: right;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .fiche .onglets .onglet,
+  .fiche .onglets__label {
+    order: initial;
+  }
+  .fiche .onglets__label {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+/******************************
+* Informations de publication
+******************************/
+.fiche .information__liste {
+  &Item {
+    font-weight: 200;
+    @include fontSize(18px);
+    margin: 20px 0;
+
+    &Lien {
+      display: flex;
+      flex-direction: row;
+      @media (min-width: $mobile) {
+        &.editeur {
+          justify-content: flex-end;
+        }
+      }
+
+      & .icone {
+        width: 15px;
+        height: 15px;
+        align-self: center;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .bold {
+    font-weight: 800;
+    @include fontSize(20px);
+    display: block;
+    margin-left: span(2 of 10);
+  }
+}
+
+/******************************
+* Prix et mention
+******************************/
+.fiche {
+  @media (min-width: $mobile) {
+    .mentions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+
+      &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 20px;
+        background-image: url("../../../public/liaisons/images/icones/icone_prix_encadre.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 20px;
+        background-image: url("../../../public/liaisons/images/icones/icone_prix_encadre_bas.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+  }
+
+  .mention {
+    @media (min-width: $mobile) {
+      width: span(5 of 11);
+    }
+    @media (max-width: $mobile) {
+      &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 20px;
+        background-image: url("../../../public/liaisons/images/icones/icone_encadre_haut_mobile.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+      &:after {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 20px;
+        background-image: url("../../../public/liaisons/images/icones/icone_encadre_bas_mobile.svg");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    }
+
+    &__header {
+      margin-left: span(1 of 12);
+    }
+
+    &__date {
+      display: block;
+      margin-top: 15px;
+    }
+
+    &__journal {
+      margin: 0 0 15px;
+    }
+
+    &__footer {
+      text-align: right;
+      margin: 20px 0;
+    }
+
+    &__auteur {
+      font-weight: 700;
+    }
+
+    &__titre {
+      .italic {
+        font-style: italic;
+      }
+    }
+  }
+}
+
+/******************************
+* Évaluation
+******************************/
+.fiche {
+  .evaluation {
+    @media (min-width: $mobile) {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+
+    &__globale {
+      background-color: $concrete;
+      width: span(8 of 12);
+      margin: 50px auto 35px;
+      height: 250px;
+      position: relative;
+      text-align: center;
+      @media (min-width: $mobile) {
+        width: span(3 of 12);
+        margin: 0;
+      }
+
+      &Titre {
+        position: relative;
+        top: -30px;
+        margin: 0;
+        @media (min-width: $mobile) {
+          @include fontSize(35px);
+          top: -25px;
+        }
+      }
+
+      &SousTitre {
+        @include fontSize(30px);
+        font-weight: 200;
+        margin: -30px 0 25px;
+      }
+
+      &Note {
+        @include fontSize(20px);
+        font-weight: 600;
+
+        .texte_large {
+          font-weight: 800;
+          @include fontSize(40px)
+        }
+      }
+
+      &Nb {
+        font-weight: 200;
+      }
+    }
+
+
+    &__commentaire {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      align-content: center;
+      justify-content: center;
+      @media (min-width: $mobile) {
+        width: span(8 of 12);
+        justify-content: flex-end;
+      }
+
+      &Btn {
+        @include boutonContourRose;
+        width: span(10 of 12);
+        margin-bottom: 25px;
+        @media (min-width: $mobile) {
+          width: span(4 of 8);
+        }
+
+        .icone {
+          width: 25px;
+          height: 25px;
+          vertical-align: middle;
+        }
+      }
+
+      .commentaire {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin: 50px 0;
+        @media (min-width: $mobile) {
+          margin: 25px 0 100px;
+        }
+
+        & .h2 {
+          margin: 0;
+          @include fontSize(24px);
+        }
+
+        & .date {
+          @include fontSize(14px);
+          font-weight: 200;
+        }
+
+        &__note {
+          @include fontSize(24px);
+          font-weight: 200;
+
+          & .icone {
+            vertical-align: sub;
+          }
+        }
+
+        &__texte {
+          margin-top: 20px;
+          padding-bottom: 30px;
+          font-weight: 200;
+          border-bottom: $concrete solid 3px;
+        }
+      }
+    }
+  }
+}
+
+/******************************************
+ * Boîte modale
+ ******************************************/
+.boiteModale {
+  &__dialogue {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+  }
+
+  &__fenetre {
+    background-color: #fefefe;
+    margin: 15% 20px 0;
+    border: 1px solid #888;
+    width: 100%;
+    border-radius: 10px;
+    height: fit-content;
+    @media (min-width: $mobile) {
+      width: span(8 of 12);
+      margin: 10% 0 0;
+    }
+  }
+
+  &__entete {
+    background-color: $bleuRibbon;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &Titre {
+      font-family: "Frank Ruhl Libre", "Georgia", serif;
+      font-weight: 900;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      @include fontSize(18px);
+      color: $blanc;
+      padding: 20px;
+      @media (min-width: $mobile) {
+        @include fontSize(28px);
+      }
+    }
+
+    &Supprimer .icone {
+      margin-right: 20px;
+      width: 35px;
+      height: 35px;
+      cursor: pointer;
+      @media (min-width: $mobile) {
+        width: 45px;
+        height: 45px;
+      }
+    }
+  }
+
+  &__contenu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &Bg {
+      width: span(11 of 12);
+      background-color: $concrete;
+      margin: 50px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      @media (min-width: $mobile) {
+        justify-content: initial;
+      }
+    }
+
+    &Image {
+      width: span(3 of 11);
+      margin: 15px;
+      @media (min-width: $mobile) {
+        width: span(1 of 10);
+        margin: 15px 25px;
+      }
+
+      &Img {
+        width: 100%;
+      }
+    }
+
+    &Div {
+      width: span(7 of 11);
+      display: inline-block;
+      @media (min-width: $mobile) {
+        width: span(10 of 10);
+      }
+    }
+
+    &Flex {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      @media (min-width: $mobile) {
+        &.auteurPrix {
+          width: span(4 of 10);
+        }
+      }
+    }
+
+
+    &Titre {
+      font-weight: 800;
+      letter-spacing: 1px;
+      margin-right: 10px;
+      width: 100%;
+      @media (min-width: $mobile) {
+        width: span(10 of 10);
+        margin-right: 0;
+      }
+    }
+
+    &Auteur {
+      font-weight: 200;
+      margin-right: 10px;
+      width: 100%;
+      padding: 0 0 35px;
+
+      & .icone {
+        width: 15px;
+        height: 15px;
+      }
+
+      & .lienAnime {
+        font-weight: 200;
+      }
+
+      & p {
+        display: inline;
+      }
+
+      @media (min-width: $mobile) {
+        padding: 0;
+        width: span(4 of 10);
+        margin-left: span(0.5 of 10);
+        margin-right: 0;
+      }
+    }
+
+    &Quantite {
+      @include fontSize(14px);
+      font-weight: 600;
+      @media (min-width: $mobile) {
+        @include fontSize(16px);
+      }
+    }
+
+    &Prix {
+      margin-right: 10px;
+      @include fontSize(20px);
+      font-weight: 600;
+      @media (min-width: $mobile) {
+        @include fontSize(16px);
+        margin-right: 20px;
+      }
+    }
+  }
+
+  &__footer {
+    border-top: solid 3px #E7E7E7;
+    width: span(10 of 11);
+    margin: 0 auto;
+    padding: 20px 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    @media (min-width: $mobile) {
+      justify-content: space-around;
+    }
+
+    &Panier {
+      @include boutonPleinRose;
+      height: auto;
+      width: span(9 of 11);
+      border-radius: 5px;
+      text-align: center;
+      @media (min-width: $mobile) {
+        width: span(5 of 10);
+        order: 1;
+        padding: 10px;
+      }
+
+      & .icone {
+        margin-left: 10px;
+        vertical-align: middle;
+        width: 16px;
+        height: 14px;
+      }
+    }
+
+    & .lienAnime {
+      display: block;
+      margin-top: 15px;
+    }
+  }
+}
+
+/*--------------------------------------------------------------------------------------
+* Panier
+*--------------------------------------------------------------------------------------*/
+.panier {
+  .h1 {
+    margin-bottom: 0;
+  }
+
+  .nbArticles {
+    @include fontSize(18px);
+    font-weight: 200;
+    margin: 0 0 0 span(1 of 12)+gutter(12);
+  }
+
+  /******************************************
+   * Styles de l'entete du panier
+   ******************************************/
+  &__header {
+    background-color: $bleuRibbon;
+    color: $blanc;
+    margin-top: 20px;
+    padding: 20px span(1 of 12)+gutter(12);
+    @include fontSize(18px);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+    &Message {
+      margin-top: 25px;
+      @media (min-width: $mobile) {
+        margin-top: 0;
+      }
+      & .icone {
+        vertical-align: sub;
+        margin-right: 10px;
+      }
+
+      &Texte {
+        font-family: "Frank Ruhl Libre", "Georgia", serif;
+        @include fontSize(24px);
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+    }
+    .bold {
+      letter-spacing: 1px;
+      font-weight: 700;
+    }
+  }
+
+  &__sousTitre {
+    display: none;
+    @media (min-width: $mobile) {
+      display: flex;
+      width: 100%;
+      margin-top: 50px;
+      &Produit {
+        display: block;
+        width: span(6 of 12);
+        margin-left: span(1 of 12)+gutter(12);
+      }
+      &Quantite {
+        display: block;
+        width: span(2 of 12);
+        margin-left: gutter(12);
+      }
+      &Prix {
+        display: block;
+        width: span(2 of 12);
+        margin-left: gutter(12);
+      }
+    }
+  }
+
+  /******************************************
+ * Section des Items du panier
+ ******************************************/
+  &__items {
+    margin: 50px 10px;
+    @media (min-width: 800px) {
+      margin: 0 0 50px;
+    }
+  }
+
+  &__flex {
+    width: span(9 of 12);
+    padding: 5px 0;
+    @media (min-width: 800px) {
+      width: span(9 of 10);
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      & div:first-child {
+        width: span(5 of 9);
+      }
+    }
+  }
+
+  /******************************************
+* Section d'un item
+******************************************/
+  &__item {
+    background-color: $concrete;
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    @media (min-width: 800px) {
+      width: span(10 of 12);
+      margin: 20px auto 0;
+      align-items: flex-start;
+    }
+
+    &Picture,
+    .placeholder {
+      width: span(2 of 12);
+      display: flex;
+      align-items: flex-start;
+      @media (min-width: 800px) {
+        width: span(1 of 10);
+      }
+    }
+
+    &Img {
+      width: 100%;
+    }
+
+    &:nth-child(2n) {
+      background-color: #FAFAFA;
+    }
+
+    &Titre {
+      font-weight: 700;
+    }
+
+    &Auteur {
+      @include fontSize(14px);
+      font-weight: 200;
+      margin-left: span(1 of 9);
+    }
+
+    &Quantite {
+      margin: 25px 0 0;
+      @media (min-width: 800px) {
+        width: span(2 of 9);
+        margin-left: gutter(9);
+        margin-top: 0;
+      }
+      //TEMPORAIRE
+      .formulaire {
+        padding: 0;
+        background-color: transparent;
+      }
+
+      & .quantite {
+        width: span(1.75 of 9);
+        @media (min-width: 800px) {
+          width: span(1 of 2);
+        }
+      }
+
+      & button {
+        @include boutonContourRose;
+        padding: 10px;
+      }
+    }
+
+    &Prix {
+      font-weight: 700;
+      @include fontSize(20px);
+      text-align: right;
+      @media (min-width: 800px) {
+        width: span(1.5 of 9);
+        text-align: left;
+        margin-left: gutter(5);
+      }
+    }
+
+    &Supprimer {
+      position: absolute;
+      top: -23px;
+      right: 0;
+      @media (min-width: 800px) {
+        top: 0;
+        right: -50px;
+      }
+
+      button {
+        @include boutonContourRose;
+        padding: 5px 10px;
+        border-width: 3px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        @media (min-width: 800px) {
+          padding: 5px 75px 5px 10px;
+        }
+      }
+    }
+  }
+
+  /******************************************
+* Section des prix du panier
+******************************************/
+  &__total {
+    @media (min-width: $mobile) {
+      width: span(9 of 12);
+      margin-left: span(2 of 12)+gutter(12);
+    }
+
+    &Info {
+      margin-bottom: 20px;
+
+      &Texte {
+        font-weight: 200;
+      }
+    }
+
+    &Prix {
+      &Section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        border-top: solid 4px #D9D9D9;
+        padding: 50px 0;
+        @media (min-width: $mobile) {
+          width: span(8 of 9);
+          margin-left: span(1 of 9)+gutter(9);
+          padding: 35px 0;
+          & .div {
+            width: span(3 of 8);
+            margin-left: span(1 of 8)+gutter(8);
+          }
+        }
+
+        & .titre {
+          font-weight: 800;
+          @include fontSize(22px);
+        }
+
+        & .prix {
+          font-weight: 800;
+          @include fontSize(22px);
+          @media (min-width: $mobile) {
+            @include fontSize(32px);
+            width: span(3 of 8);
+            text-align: right;
+            margin-right: span(1 of 8)+gutter(8);
+
+          }
+        }
+      }
+
+      & .panier__sousTotalNbArticle {
+        font-weight: 200;
+        @include fontSize(18px)
+      }
+    }
+  }
+
+  @media (min-width: $mobile) {
+    &__tpsTitre,
+    &__LivraisonTitre .div {
+      margin-left: span(1 of 8)+gutter(8);
+    }
+  }
+
+  &__Livraison {
+    & .formulaire {
+      background-color: transparent;
+      padding: 0;
+
+      & .select__conteneur {
+        width: auto;
+        @media (min-width: $mobile) {
+          width: span(2 of 3);
+        }
+
+        & select {
+          background-color: $concrete;
+        }
+      }
+    }
+
+    &Bouton {
+      @include boutonContourRose;
+      padding: 10px;
+    }
+
+    &Date {
+      margin-top: 20px;
+      font-weight: 200;
+
+      .date {
+        display: block;
+        font-weight: 700;
+      }
+    }
+  }
+
+  &__prix {
+    & .titre {
+      @include fontSize(32px);
+      margin-left: span(1 of 9)+gutter(9);
+      @media (min-width: $mobile) {
+        margin-left: span(2 of 9)+gutter(9);
+      }
+    }
+
+    & .prix {
+      @include fontSize(25px);
+      @media (min-width: $mobile) {
+        @include fontSize(42px)
+      }
+    }
+  }
+
+  &__liens {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 30px 0 75px;
+    @media (min-width: $mobile) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    &Commande {
+      @include boutonPleinRose;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 0 auto 35px;
+      text-align: center;
+      width: span(7 of 9);
+      height: auto;
+      @media (min-width: $mobile) {
+        width: span(5 of 12);
+        margin-right: span(1 of 12)+gutter(12);
+      }
+
+      & .icone {
+        width: 25px;
+        height: 25px;
+        margin-left: 10px;
+        vertical-align: text-bottom;
+      }
+    }
+
+    &Magasiner {
+      width: fit-content;
+      @media (min-width: $mobile) {
+        margin-left: span(2 of 12)+gutter(12);
+        height: fit-content;
+      }
+    }
+  }
+}
+
+/******************************************
+* Contrainte js
+******************************************/
+.js {
+  .bouton__js {
+    display: none;
+    @include fontSize(16px);
+  }
+  @media (min-width: 800px) {
+    .panier__flex {
+      align-items: flex-end;
+    }
+  }
+}
+
+.panier .select__conteneur {
+  margin: 0;
+}

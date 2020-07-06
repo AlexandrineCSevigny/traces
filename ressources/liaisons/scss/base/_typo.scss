@@ -1,0 +1,143 @@
+/**
+ * @Project Traces - Typographies
+ * @author Camille Dion-Bolduc <camille.dion.bolduc@gmail.com>
+ * @date Octobre 2019 - Version 1.0.0
+
+ * ----------------------------
+ * TABLE DES MATIÈRES - Typo
+ * ----------------------------
+ * Import des typographies
+ * Base décimale
+ * Hiérarchie responsive
+ * Niveaux de titres (H1-H4)
+ * Transaction
+ */
+
+
+/** ----------- Import de typo de Google Fonts pour tout le site -----------
+* Typographies de titres (Frank Ruhl Libre) */
+/* Typographies de texte (Fira Sans Condensed) */
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:100,200,300,400,500,600,700,800,900|Frank+Ruhl+Libre:300,400,500,700,900&display=swap');
+
+
+/** ----------- Base décimale ----------- **/
+html{
+  font-size: 62.5%;
+}
+body {
+  @include fontSize(16px);
+  font-family: "Fira Sans Condensed", "Helvetica Neue", sans-serif;
+
+  /* facteur multiplicateur de la taille de la police 1.375x16 = 22 */
+  line-height: 1.4;
+}
+@media (min-width: $mobile) {
+  body {
+    line-height: 1.5;
+  }
+}
+@media (min-width: $desktop) {
+  body {
+    line-height: 1.6;
+  }
+}
+
+
+/** ----------- Hiérarchie responsive ----------- **/
+
+/* TITRES NIVEAU 1 */
+h1,
+.h1 { /* = 55px */
+  @include fontSize(55px);
+  font-family: "Frank Ruhl Libre", "Georgia", serif;
+}
+@media (min-width: $mobile) {
+  h1,
+  .h1 { /* = 55px */
+    @include fontSize(55px);
+  }
+}
+@media (min-width: $desktop) {
+  h1,
+  .h1 { /* = 64px */
+    @include fontSize(64px);
+  }
+}
+
+
+/* TITRES NIVEAU 2 */
+h2,
+.h2 { /* = 43px */
+  @include fontSize(43px);
+  font-family: "Frank Ruhl Libre", "Georgia", serif;
+}
+@media (min-width: $mobile) {
+  h2,
+  .h2 { /* = 43px */
+    @include fontSize(43px);
+  }
+}
+@media (min-width: $desktop) {
+  h2,
+  .h2 { /* = 36px */
+    @include fontSize(55px);
+  }
+}
+
+
+/* TITRES NIVEAU 3 */
+h3,
+.h3 { /* = 22px */
+  @include fontSize(22px);
+  font-weight: 700;
+}
+@media (min-width: $mobile) {
+  h3,
+  .h3 {  /* = 18px */
+    @include fontSize(18px);
+  }
+}
+@media (min-width: $desktop) {
+  h3,
+  .h3 { /* = 22px */
+    @include fontSize(22px);
+  }
+}
+
+
+/* TITRES NIVEAU 4 */
+h4,
+.h4 { /* = 16px */
+  @include fontSize(20px);
+  font-weight: 400;
+}
+@media (min-width: $mobile) {
+  h4,
+  .h4 { /* = 15px */
+    @include fontSize(20px);
+  }
+}
+
+@media (min-width: $desktop) {
+  h4,
+  .h4 { /* = 16px */
+    @include fontSize(20px);
+  }
+}
+
+// Transaction
+.transaction {
+  & h1,
+  & h2,
+  & h3,
+  & h4 {
+    margin: 0;
+  }
+  & h1 {
+    @include fontSize(48px);
+    margin-top: 30px;
+  }
+  & h2 {
+    @include fontSize(36px)
+  }
+}

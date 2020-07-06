@@ -1,0 +1,27 @@
+/**
+ * @Project Coeur Atout - general.scss
+ * @author Camille Dion-Bolduc <camille.dion.bolduc@gmail.com>
+ * @date Septembre 2019 - Version 1.0.1
+
+ * ------------------
+ * TABLE DES MATIÈRES
+ * ------------------
+ * Palette de couleurs
+ * Points de rupture
+ **/
+
+/** ----------- Palette de couleurs ----------- **/
+$bleuRibbon: #2C52FF; // Bleu d'accent
+$radicalRed: #FF4769; // Rose d'accent
+
+$blanc: #fff;
+$wildSand: #F6F6F6; // Couleur de fond de tout le site
+$concrete: #F3F3F3; // Couleur grise de fond (Recherche, footer...)
+$alto: #D0D0D0; // Gris moyen de fond de input
+$noir: #000;
+
+/** ----------- Points de rupture ----------- **/
+$mobile : 601px;
+/* tablet, landscape iPad, lo-res laptops ands desktops */
+$desktop : 1025px;
+/* hi-res laptops and desktops */

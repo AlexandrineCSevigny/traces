@@ -1,0 +1,870 @@
+/**
+ * @Project Traces - Mandat A
+ * @author Camille Dion-Bolduc <camille.dion.bolduc@gmail.com>
+ * @date Octobre 2019 - Version 1.0.2
+
+ * -----------------------------
+ * TABLE DES MATIÈRES - MANDAT A
+ * -----------------------------
+ * Section - Coup de coeur
+ *** Section d'entête de Coup de Coeur
+ *** Section des livres Coup de Coeur
+ * Section - Nouveautés
+ * Section - Actualités litéraires
+ * Transaction (Confirmation - styles de bases)
+ * Style de print pour imprimer la page de confirmation
+ */
+
+.accueil {
+  position: relative;
+  max-width: 1200px;
+}
+
+// ------  Section - Coup de coeur ---------- ///
+
+// -- Section d'entête de Coup de Coeur -- //
+.coupDeCoeur {
+  background-color: white;
+
+  &__entete {
+    margin-bottom: 5rem;
+
+    @media (min-width: $mobile) {
+      margin-top: 3rem;
+      width: span(3 of 12);
+      float: left;
+      margin-bottom: 0;
+    }
+
+    @media (max-width: 750px) {
+      margin-bottom: 0;
+    }
+
+    &Titre {
+      margin-left: span(1 of 12)+gutter(1 of 11);
+      letter-spacing: 1.5px;
+
+      // On contraint plus petit pour forcer le retour de ligne
+      width: span(2 of 12);
+      font-size: 6rem;
+      line-height: 50px;
+
+      @media (min-width: $mobile) {
+        margin-left: 0;
+      }
+    }
+
+    &Icone {
+      position: absolute;
+      mix-blend-mode: multiply;
+      top: 0;
+      right: -7%;
+      width: 72%;
+
+      @media (min-width: $mobile) {
+        width: 28%;
+        right: initial;
+        left: -19%;
+        top: 8%;
+      }
+
+      img {
+        width: 60%;
+
+        @media (min-width: $mobile) {
+          width: 90%;
+        }
+      }
+    }
+
+    &VoirTous {
+      padding: 5px 5px 5px span(3 of 9);
+      width: span(9 of 12);
+      display: inline-block;
+      height: 100%;
+      border: 5px solid $bleuRibbon;
+      transition: background-color 0.2s ease-in-out;
+      background-color: white;
+      opacity: 1;
+
+      @media (min-width: $mobile) {
+        width: span(3 of 3);
+        padding: 10px 5px 8px span(3 of 9);
+      }
+
+      svg {
+        width: 13px;
+        vertical-align: bottom;
+      }
+
+      span {
+        display: inline-block;
+        font-weight: 400;
+        width: span(8 of 12);
+
+        @media (min-width: $mobile) {
+          width: span(2 of 3);
+        }
+      }
+
+      &:hover {
+        background-color: #2C52FF;
+        opacity: 0.9;
+
+        span {
+          color: white;
+        }
+      }
+
+      .coupDeCoeur__icone {
+        height: 35px;
+      }
+    }
+  }
+
+  // -- Section des livres Coup de Coeur -- //
+  &__livres {
+
+    @media (min-width: $mobile) {
+      width: span(9 of 12);
+      padding-left: span(1 of 8);
+      padding-top: 5rem;
+      display: flex;
+    }
+
+    .coupDeCoeur__livre {
+      margin-bottom: 3rem;
+
+      @media (min-width: $mobile) {
+        width: span(3 of 9);
+        margin-right: span(1 of 5);
+        display: flex;
+      }
+
+      a {
+        display: inline-block;
+        width: 100%;
+        height: fit-content;
+
+        .coupDeCoeur__livreConteneur {
+          width: 100%;
+
+          &Picture {
+            img {
+              opacity: 0.9;
+              transition: opacity 0.3s ease-in-out;
+              width: span(11 of 12);
+
+              @media (min-width: $mobile) {
+                width: 100%;
+              }
+            }
+          }
+        }
+
+        .coupDeCoeur__livreTitre {
+          font-size: 2.5rem;
+          margin: 10px 0 0 0;
+
+          @media (min-width: $mobile) {
+            width: 100%;
+            line-height: 25px;
+          }
+        }
+
+        .coupDeCoeur__livreAuteur {
+          font-size: 2rem;
+          font-weight: 300;
+          margin: 10px span(2 of 12) 15px span(6 of 12)+gutter(1 of 11);
+        }
+      }
+
+      a:hover, a:focus {
+        img {
+          opacity: 1;
+        }
+      }
+
+      &Conteneur {
+        &Ligne {
+          @media (min-width: $mobile) {
+            position: relative;
+            top: -16px;
+            left: -20px;
+            content: '';
+            width: span(6 of 12);
+            display: inline-block;
+            height: 8px;
+            background-color: $radicalRed;
+            mix-blend-mode: multiply;
+          }
+        }
+
+        &Picture {
+          &:after {
+            @media (min-width: $mobile) {
+              // Rien pour le moment
+            }
+          }
+        }
+      }
+
+      &:last-of-type {
+        @media (min-width: $mobile) {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+// ------  Section - Nouveautés ---------- ///
+
+.nouveautes {
+
+  @media (min-width: $mobile) {
+    background-image: url("../../../public/liaisons/images/autres/illustration_nouveautes_bureau.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: cover;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+
+  &__entete {
+    padding: 8rem 2rem 22rem span(1 of 12)+gutter(1 of 11);
+    background-image: url("../../../public/liaisons/images/autres/illustration_nouveautes_mobile.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    @media (min-width: $mobile) {
+      width: span(4 of 12);
+      text-align: right;
+      background-image: none;
+      display: flex;
+    }
+
+    @media (max-width: 1000px) {
+      width: auto;
+    }
+
+    &Titre {
+      margin-top: 0;
+      color: white;
+      font-size: 6rem;
+      line-height: 50px;
+      letter-spacing: 1.5px;
+
+      &:after {
+        content: '';
+        margin-left: span(3 of 12);
+        width: 160px;
+        display: inline-block;
+        height: 8px;
+        background-color: white;
+      }
+
+      @media (min-width: $mobile) {
+        margin-bottom: 0;
+        font-size: 5rem;
+        width: span(4 of 4);
+        text-align: right;
+      }
+    }
+
+    &VoirToutes {
+      color: white;
+      padding: 5px 5px 6px span(2 of 12);
+      margin: 0 span(3 of 12)+gutter(1 of 11) 0 0;
+      width: span(7 of 12);
+      display: inline-block;
+      height: fit-content;
+      border: 5px solid $radicalRed;
+      background-color: transparent;
+      transition: background-color 0.2s ease-in-out;
+
+      @media (min-width: $mobile) {
+        margin-right: span(1 of 12);
+        padding: 5px span(1 of 12) 5px 15px;
+      }
+
+      svg {
+        height: 35px;
+        width: 13px;
+        vertical-align: bottom;
+      }
+
+      span {
+        display: inline-block;
+        font-weight: 400;
+        width: span(5 of 7);
+
+        @media (min-width: $mobile) {
+          padding-left: 15px;
+          width: span(2 of 3);
+        }
+      }
+
+      @media (min-width: $mobile) {
+        display: inline-block;
+        width: span(4 of 4);
+        text-align: right;
+      }
+
+      @media (min-width: $mobile) {
+        margin-top: 3rem;
+        text-align: left;
+      }
+
+      &:hover {
+        background-color: $radicalRed;
+        opacity: 0.9;
+      }
+    }
+  }
+
+  &__livres {
+    background-color: #F3F3F3;
+    padding: 8rem 0 8rem 0;
+
+    @media (min-width: $mobile) {
+      background-color: transparent;
+      width: span(8 of 12)+gutter(1 of 6);
+      padding: 3rem 0 0 span(1 of 12)+gutter(1 of 11);
+      margin-right: 0;
+      display: flex;
+    }
+
+    .nouveautes__livre {
+      margin-bottom: 3rem;
+
+      a {
+        display: inline-block;
+        width: 100%;
+        height: fit-content;
+
+        .nouveautes__livrePicture {
+          img {
+            width: span(11 of 12);
+            position: relative;
+          }
+        }
+
+        .nouveautes__livreTitre {
+          font-size: 2.5rem;
+          margin: 10px 0 0 0;
+
+          @media (min-width: $mobile) {
+            width: 90%;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            line-height: 25px;
+          }
+        }
+
+        .nouveautes__livreAuteur {
+          font-size: 2rem;
+          font-weight: 300;
+          margin: 10px span(2 of 12) 0 span(6 of 12)+gutter(1 of 11);
+
+          @media (min-width: $mobile) {
+            margin: 10px span(1 of 12) 0 span(5 of 12);
+          }
+        }
+
+        .nouveautes__livrePrix {
+          font-size: 2rem;
+          font-weight: 500;
+          margin: 0 span(2 of 12) 15px span(6 of 12)+gutter(1 of 11);
+        }
+      }
+
+      &Conteneur {
+        &:after {
+          margin-top: 1rem;
+          content: '';
+          width: span(4 of 12);
+          display: inline-block;
+          height: 10px;
+          background-color: $radicalRed;
+          mix-blend-mode: multiply;
+        }
+      }
+
+      @media (min-width: $mobile) {
+        width: span(3 of 7);
+        margin-right: gutter(1 of 13);
+        display: flex;
+      }
+
+      &Ligne {
+        position: absolute;
+        left: 90%;
+        content: '';
+        display: inline-block;
+        height: 55%;
+        width: 15px;
+        background-color: $radicalRed;
+        mix-blend-mode: multiply;
+
+        @media (min-width: $mobile) {
+          left: 89%;
+          height: 45%;
+        }
+      }
+    }
+  }
+}
+
+// ------  Section - Actualités litéraires ---------- ///
+.actualites {
+  background-color: white;
+  padding-top: 3rem;
+
+  @media (min-width: $mobile) {
+    display: flex;
+  }
+
+  &__entete {
+    margin: 5rem 0 10rem 0;
+    position: relative;
+
+    @media (min-width: $mobile) {
+      width: span(4 of 12);
+      margin-right: gutter(1 of 11);
+    }
+
+    &Titre {
+      margin: 0 0 0 span(1 of 12)+ gutter(1 of 11);
+      letter-spacing: 1.5px;
+
+      // On contrain plus petit pour forcer le retour de ligne
+      width: span(2 of 12);
+      font-size: 6rem;
+      line-height: 50px;
+
+      &:after {
+        content: '';
+        width: 150px;
+        display: inline-block;
+        height: 8px;
+        background-color: $bleuRibbon;
+        mix-blend-mode: multiply;
+      }
+    }
+
+    &Icone {
+      mix-blend-mode: multiply;
+
+      @media (min-width: $mobile) {
+        right: initial;
+        left: 7%;
+        top: 35%;
+      }
+
+      img {
+        position: absolute;
+        top: -16%;
+        right: 13%;
+        width: 43%;
+
+        @media (min-width: $mobile) {
+          left: -47%;
+          right: initial;
+          top: 13%;
+          width: 94%;
+        }
+      }
+    }
+
+    &VoirToutes {
+      padding: 8px 5px 6px span(3 of 9);
+      margin: 5rem 0 0 span(3 of 12)+gutter(1 of 11);
+      width: span(9 of 12);
+      display: inline-block;
+      height: fit-content;
+      border: 5px solid $bleuRibbon;
+      transition: background-color 0.2s ease-in-out;
+      background-color: white;
+      opacity: 1;
+
+      svg {
+        height: 35px;
+        width: 13px;
+        vertical-align: bottom;
+      }
+
+      span {
+        display: inline-block;
+        font-weight: 400;
+        width: span(8 of 12);
+        margin-right: 10px;
+      }
+
+      &:hover {
+        background-color: $bleuRibbon;
+
+        span {
+          color: white;
+        }
+      }
+    }
+  }
+
+  .actualites__bloc {
+
+    @media (max-width: 800px) {
+      flex-wrap: wrap;
+    }
+
+    @media (min-width: $mobile) {
+      width: span(8 of 12);
+      margin-top: 9rem;
+      margin-bottom: 9rem;
+      padding-left: span(1 of 12);
+      display: flex;
+    }
+
+    &Conteneur {
+      position: relative;
+
+      &:before {
+        content: url("../../../public/liaisons/images/icones/icone_encadre_gauche.svg");
+        position: absolute;
+        top: 11%;
+        left: -3px;
+
+        @media (min-width: $mobile) {
+          top: 13%;
+          left: -55px;
+        }
+      }
+
+      &:last-of-type {
+        background-repeat: no-repeat;
+        background-image: url("../../../public/liaisons/images/icones/icone_encadre_droite.svg");
+        background-position: right;
+
+        &:before {
+          content: none;
+        }
+      }
+    }
+
+    .actualite {
+      margin: 0 0 50px span(1 of 12)+gutter(1 of 11);
+
+      @media (min-width: $mobile) {
+        width: span(4 of 4);
+        margin: 0;
+      }
+
+      &__date {
+        font-weight: 300;
+        font-size: 1.9rem;
+      }
+
+      &__titre {
+        width: span(9 of 12);
+        font-size: 3.5rem;
+        margin: 5px 0 5px 0;
+
+        &:after {
+          margin-left: span(7 of 12)+ gutter(1 of 11);
+          content: '';
+          width: span(4 of 12);
+          display: inline-block;
+          height: 8px;
+          background-color: $bleuRibbon;
+          mix-blend-mode: multiply;
+        }
+      }
+
+      &__auteur {
+        text-align: left;
+        font-weight: 500;
+        margin-left: span(6 of 12)- gutter(1 of 11);
+      }
+
+      &__texte {
+        margin: 40px span(2 of 12) 50px 0;
+        line-height: 25px;
+      }
+
+      &__LireSuite {
+        position: relative;
+        top: -25px;
+        margin-left: span(3 of 12)+gutter(2 of 5);
+        opacity: 0.85;
+        transition: opacity 0.3s ease-in-out;
+        padding: 5px 5px 5px span(3 of 12);
+        width: span(6 of 12);
+        display: inline-block;
+        background-color: $radicalRed;
+        border-radius: 5px;
+        mix-blend-mode: multiply;
+
+        svg {
+          width: 15px;
+          height: 16px;
+        }
+
+        span {
+          display: inline-block;
+          font-weight: 400;
+          width: span(4 of 7);
+        }
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+
+      &__picture {
+        margin-bottom: 3rem;
+
+        img {
+          width: 130px;
+        }
+      }
+
+      &:last-of-type {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+// -- Transaction (Confirmation - styles de bases) -- //
+
+.confirmation {
+  margin-bottom: 35px;
+
+  h1 {
+    margin-bottom: 10px;
+  }
+
+  &__imageConfirmation {
+    text-align: center;
+
+    img {
+      width: 100%;
+      animation-name: transition;
+      animation-duration: 2s;
+      animation-timing-function: ease-out;
+
+      @keyframes transition {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    }
+
+    &__conteneur {
+      display: inline-block;
+      width: 70%;
+    }
+  }
+
+  .gris_pale {
+    background-color: #FAFAFA;
+  }
+
+  &__texteConfirmation {
+    margin-top: 15px;
+    font-size: 2.5rem;
+    font-weight: 300;
+
+    p {
+      margin-bottom: 15px;
+    }
+  }
+
+  &__sommaireCommande {
+    margin-top: 55px;
+
+    div {
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    &__modePaiment {
+      svg {
+        vertical-align: middle;
+        margin-right: 10px;
+      }
+    }
+
+    .validation__modifier {
+      padding: 0;
+      margin-top: 25px;
+
+      .bouton--vide {
+        padding: 7px 35px 7px 35px
+      }
+    }
+
+    &__informations {
+      svg {
+        vertical-align: middle;
+        width: 20px;
+        margin-right: 10px;
+      }
+    }
+
+    .confirmation {
+      margin-left: 0;
+      padding: 0;
+
+      .panier__totalPrix {
+        margin-bottom: 0;
+        padding: 0;
+      }
+
+      .panier__totalPrixSection {
+        margin-left: 0;
+      }
+
+      .panier__Livraison {
+        margin-bottom: 0;
+
+        div {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__boutonImprimer {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    margin-top: 45px;
+  }
+
+  &__lienContinuerMagasinage {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    margin-top: 45px;
+    margin-bottom: 45px;
+
+    a {
+      font-size: 2.3rem;
+      font-weight: 300;
+    }
+
+    .icone {
+      vertical-align: sub;
+      margin-left: 10px;
+      width: 26px;
+      height: 26px;
+    }
+  }
+
+  .panier__items {
+    margin-bottom: 0;
+  }
+
+  .panier__item {
+    padding: 30px;
+
+    &Quantite {
+      font-weight: 300;
+      font-size: 1.6rem;
+    }
+
+    &Prix {
+      font-weight: 300;
+      font-size: 1.6rem;
+
+      &Total {
+        width: 100%;
+        margin-top: 15px;
+        font-size: 2.5rem;
+        font-weight: 500;
+        text-align: right;
+      }
+    }
+  }
+}
+
+.bouton__livraison {
+  margin-top: 35px;
+
+  svg {
+    width: 25px;
+    margin-left: 10px;
+    padding-top: 2px;
+    vertical-align: bottom;
+  }
+}
+
+.livraison__nomClient {
+  margin-top: 35px;
+  margin-bottom: 45px;
+}
+
+// Style de print pour imprimer la page de confirmation
+@media print {
+  header {
+    .menu__logo {
+      width: 50%;
+    }
+
+    .menu__logoSVG {
+      width: 20%;
+    }
+
+    .logo_panier_mobile {
+      display: none;
+    }
+
+    .menu__btnMenu {
+      display: none;
+    }
+
+    .recherche {
+      display: none;
+    }
+  }
+
+  .confirmation {
+    &__imageConfirmation {
+      display: none;
+    }
+
+    &__lienContinuerMagasinage {
+      display: none;
+    }
+
+    &__boutonImprimer {
+      display: none;
+    }
+  }
+
+  footer {
+    .menu__logoLien {
+      padding: 0;
+    }
+
+    .menu__logo {
+      padding: 0;
+    }
+
+    .menu__logoSVG {
+      width: 20%;
+    }
+
+    .carte {
+      display: none;
+    }
+
+    .media {
+      display: none;
+    }
+  }
+}
