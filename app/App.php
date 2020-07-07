@@ -129,11 +129,11 @@ class App
 
         if ($this->pdo === null) {
             if ($environnement == "serveur-local") {
-                $connexionBd = new ConnexionBD("localhost", "root", "root", "19_griserie");
+                $connexionBd = new ConnexionBD("localhost", "----", "----", "--------");
                 $this->pdo = $connexionBd->getNouvelleConnexionPDO();
 
             } else {
-                $connexionBd = new ConnexionBD("localhost", "19_griserie", "sourisverte", "19_rpni3_griserie");
+                $connexionBd = new ConnexionBD("localhost", "-------", "-------", "--------");
                 $this->pdo = $connexionBd->getNouvelleConnexionPDO();
             }
         }
