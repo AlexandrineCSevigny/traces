@@ -89,10 +89,10 @@ class Courriel
         //Configuration du serveur d'envoi
         $this->courriel->SMTPDebug = 0;                   // Activer le débogage 0 = off, 1 = messages client, 2 = messages client et serveur
         $this->courriel->isSMTP();                         // Envoyer le courriel avec le protocole standard SMTP
-        $this->courriel->Host = 'smtp.gmail.com';    // Adresse du serveur d'envoi SMTP
+        $this->courriel->Host = '';    // Adresse du serveur d'envoi SMTP
         $this->courriel->SMTPAuth = true;                // Activer l'authentification SMTP
-        $this->courriel->Username = 'cdionbolduc.tim@gmail.com'; // Nom d'utilisateur SMTP
-        $this->courriel->Password = 'tim_2020';          // Mot de passe SMTP
+        $this->courriel->Username = ''; // Nom d'utilisateur SMTP
+        $this->courriel->Password = '';          // Mot de passe SMTP
         $this->courriel->SMTPSecure = 'TLS';               // Activer l'encryption TLS, `PHPMailer::ENCRYPTION_SMTPS` est aussi accepté
         $this->courriel->Port = 587;                 // Port TCP à utiliser pour la connexion SMTP
 
